@@ -2,15 +2,13 @@ package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
@@ -20,13 +18,13 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping()
     public String getUsers(Model model) {
         model.addAttribute("listUsers", userService.getAllUsers());
         return "admin";
     }
 
-    @GetMapping("admin/newUser")
+    @GetMapping("/newUser")
     public String getUsersAndRoles(Model model) {
         model.addAttribute("listUsers", userService.getAllUsers());
         model.addAttribute("user", new User());
@@ -40,7 +38,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/{id}")
+    @GetMapping("/{id}")
     public String getUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id).orElse(new User()));
         model.addAttribute("roles", roleService.getAllRoles());
