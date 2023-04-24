@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+/.mvn/
+.gitignore
+/src/main/resources/db/
+mvnw
+mvnw.cmd
