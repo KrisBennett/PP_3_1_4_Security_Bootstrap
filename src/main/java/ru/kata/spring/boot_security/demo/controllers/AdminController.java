@@ -30,14 +30,6 @@ public class AdminController {
         return "admin";
     }
 
-//    @GetMapping("/newUser")
-//    public String getUsersAndRoles(Model model) {
-//        model.addAttribute("listUsers", userService.getAllUsers());
-//        model.addAttribute("user", new User());
-//        model.addAttribute("roles", roleService.getAllRoles());
-//        return "newUser";
-//    }
-
     @PostMapping("/newUser")
     public String createUser(@ModelAttribute User user) {
         userService.addUser(user);

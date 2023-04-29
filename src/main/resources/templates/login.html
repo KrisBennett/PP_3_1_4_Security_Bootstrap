@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       lang="en">
 <head>
     <div th:include="/parts/metas"></div>
@@ -15,13 +14,13 @@
                 <form th:action="@{/login}" method="post">
                     <!-- alert error -->
                     <div th:if="${param.error}">
-                        <div class="alert alert-danger">Invalid email or
-                            password.
+                        <div class="alert alert-danger">
+                            Invalid email or password.
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="username"> </label>
-                        <input type="text" class="form-control" id="username" name="username"
+                        <label for="email"> </label>
+                        <input type="text" class="form-control" id="email" name="email"
                                placeholder="Email address" autofocus="autofocus">
                         <label for="password"></label>
                         <input type="password" id="password" name="password" class="form-control"
@@ -31,7 +30,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-sm-offset-3">
                                 <input type="submit" name="login-submit" id="login-submit"
-                                       class="form-control btn btn-primary" value="Sign In"/>
+                                       class="form-control btn btn-primary" value="Sign in"/>
                             </div>
                         </div>
                     </div>
@@ -40,23 +39,6 @@
         </div>
     </div>
 </div>
-<!--<div class="container text-center mt-5 col-sm-4">-->
-<!--    <main class="form-signing">-->
-<!--        <form class="form-signin" method="post" action="/login">-->
-<!--            <h1 class="form signin-heading">Please sign in</h1>-->
-<!--            <div class="form-group">-->
-<!--                <input type="email" class="form-control form-control-lg" name="email" placeholder="Email">-->
-
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">-->
-
-<!--            </div>-->
-<!--            <button type="submit" class="w-100 btn btn-lg btn-primary">Sign in</button>-->
-<!--        </form>-->
-<!--    </main>-->
-<!--</div>-->
-
 <div th:include="/parts/scripts"></div>
 </body>
 </html>

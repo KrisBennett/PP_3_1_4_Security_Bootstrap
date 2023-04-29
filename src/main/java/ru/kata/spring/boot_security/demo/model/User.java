@@ -17,8 +17,8 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "surname")
     private String surname;
@@ -35,10 +35,10 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String username, String surname, String password,
+    public User(Long id, String name, String surname, String password,
                 Integer age, String email, Set<Role> roles) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.surname = surname;
         this.password = password;
         this.age = age;
@@ -68,8 +68,12 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
@@ -117,7 +121,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

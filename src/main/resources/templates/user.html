@@ -13,14 +13,13 @@
         <div class="col-2 px-md-0">
             <br>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <a th:href="@{/admin}"
-                   style="width: 100%" class="btn btn-link btn-sm btn-block text-left"
+                <a th:href="@{/admin}" style="width: 100%"
+                   class="btn btn-link btn-sm btn-block text-left"
                    aria-current="true">Admin</a>
             </div>
             <div sec:authorize-url="/user">
-                <a th:href="@{/user}"
-                   style="width: 100%" class="btn btn-primary btn-sm btn-block text-left active"
-                   >User</a>
+                <a th:href="@{/user}" style="width: 100%"
+                   class="btn btn-primary btn-sm btn-block text-left active">User</a>
             </div>
         </div>
         <div class="col-10 bg-light vh-100">
@@ -45,7 +44,7 @@
                         <tbody>
                         <tr th:object="${user}">
                             <td th:text="${user.id}">ID</td>
-                            <td th:text="${user.username}">First Name</td>
+                            <td th:text="${user.name}">First Name</td>
                             <td th:text="${user.surname}">Last Name</td>
                             <td th:text="${user.age}">Age</td>
                             <td th:text="${user.email}">E-mail</td>
@@ -55,7 +54,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
