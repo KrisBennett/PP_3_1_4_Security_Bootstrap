@@ -1,36 +1,64 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
-    <meta charset="UTF-8">
+    <div th:include="/parts/metas"></div>
     <title>User page</title>
+    <div th:include="/parts/navbar"></div>
 </head>
 <body>
-<a href="/logout">Logout</a>
-<br>
-<div>
-    <h1>User information-page</h1>
-    <br>
-    <h3>About user</h3>
-    <br>
-    <table th:border="1">
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Role</th>
-        </tr>
-        <tr th:object="${user}">
-            <td th:text="${user.id}">ID</td>
-            <td th:text="${user.username}">First Name</td>
-            <td th:text="${user.surname}">Last Name</td>
-            <td th:text="${user.age}">Age</td>
-            <td th:text="${user.email}">E-mail</td>
-            <td th:text="${user.roleToString()}"></td>
-        </tr>
-    </table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 px-md-0">
+            <br>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/admin}"
+                   style="width: 100%" class="btn btn-link btn-sm btn-block text-left"
+                   aria-current="true">Admin</a>
+            </div>
+            <div sec:authorize-url="/user">
+                <a th:href="@{/user}"
+                   style="width: 100%" class="btn btn-primary btn-sm btn-block text-left active"
+                   >User</a>
+            </div>
+        </div>
+        <div class="col-10 bg-light vh-100">
+            <br>
+            <h3>User information-page</h3>
+            <div class="card">
+                <div class="card-header">
+                    About user
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:object="${user}">
+                            <td th:text="${user.id}">ID</td>
+                            <td th:text="${user.username}">First Name</td>
+                            <td th:text="${user.surname}">Last Name</td>
+                            <td th:text="${user.age}">Age</td>
+                            <td th:text="${user.email}">E-mail</td>
+                            <td th:text="${user.roleToString()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+<div th:include="/parts/scripts"></div>
 </body>
 </html>

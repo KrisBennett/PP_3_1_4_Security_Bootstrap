@@ -7,6 +7,8 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -19,18 +21,22 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String getUsers(Model model) {
+    public String getUsersTable(Model model, Principal principal) {
         model.addAttribute("listUsers", userService.getAllUsers());
+        model.addAttribute("user", userService
+                .findByEmail(principal.getName()).orElse(new User()));
+        model.addAttribute("newUser", new User());
+        model.addAttribute("roles", roleService.getAllRoles());
         return "admin";
     }
 
-    @GetMapping("/newUser")
-    public String getUsersAndRoles(Model model) {
-        model.addAttribute("listUsers", userService.getAllUsers());
-        model.addAttribute("user", new User());
-        model.addAttribute("roles", roleService.getAllRoles());
-        return "newUser";
-    }
+//    @GetMapping("/newUser")
+//    public String getUsersAndRoles(Model model) {
+//        model.addAttribute("listUsers", userService.getAllUsers());
+//        model.addAttribute("user", new User());
+//        model.addAttribute("roles", roleService.getAllRoles());
+//        return "newUser";
+//    }
 
     @PostMapping("/newUser")
     public String createUser(@ModelAttribute User user) {
@@ -42,7 +48,7 @@ public class AdminController {
     public String getUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id).orElse(new User()));
         model.addAttribute("roles", roleService.getAllRoles());
-        return "edit";
+        return "admin";
     }
 
     @PostMapping("/update/{id}")
