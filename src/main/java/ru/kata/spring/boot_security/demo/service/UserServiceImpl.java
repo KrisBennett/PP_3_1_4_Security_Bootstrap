@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
-
         if (!BCRYPT_PATTERN.matcher(user.getPassword()).matches()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
