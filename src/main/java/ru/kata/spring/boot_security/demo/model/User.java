@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +12,8 @@ import java.util.stream.Collectors;
 
 @Table(name = "users")
 @Entity
+//@DynamicInsert
+//@DynamicUpdate
 public class User implements UserDetails {
 
     @Id

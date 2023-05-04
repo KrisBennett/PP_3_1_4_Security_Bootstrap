@@ -76,7 +76,7 @@
                                              role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
-                                                    <form th:method="post"
+                                                    <form th:method="patch"
                                                           th:action="@{/admin/update/{id}(id=${user.id})}"
                                                           th:object="${user}"
                                                           id="edit-form">
@@ -245,7 +245,7 @@
                                                         <button type="button" class="btn btn-secondary btn-sm"
                                                                 data-dismiss="modal">Close
                                                         </button>
-                                                        <form th:method="post"
+                                                        <form th:method="delete"
                                                               th:action="@{/admin/delete/{id}(id=${user.id})}"
                                                               th:object="${user}">
                                                             <button type="submit" class="btn btn-danger btn-sm">

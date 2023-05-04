@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,6 +37,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void updateUser(User user) {
+        Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
+
+        if (!BCRYPT_PATTERN.matcher(user.getPassword()).matches()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.saveAndFlush(user);
     }
 
