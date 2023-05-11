@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 
 @Table(name = "users")
 @Entity
-//@DynamicInsert
-//@DynamicUpdate
 public class User implements UserDetails {
 
     @Id
